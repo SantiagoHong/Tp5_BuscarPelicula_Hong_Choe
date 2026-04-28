@@ -1,11 +1,13 @@
 import MovieCard from "./MovieCard"
 
-function MovieList({ setMovies }) {
-
+function MovieList({ movies, setMovies }) {
+  
   return (
-    <>
-        <MovieCard />
-    </>
+    <div>
+      {movies.map((movie) => (
+        <MovieCard key={movie.imdbID} movie={movie} setMovie={setMovies}/>
+      ))}
+    </div>
   )
 }
 

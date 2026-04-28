@@ -1,8 +1,8 @@
-function ErrorMessage() {
+function ErrorMessage({ message }) {
 
   return (
     <>
-      
+      <p>{message}</p>
     </>
   )
 }

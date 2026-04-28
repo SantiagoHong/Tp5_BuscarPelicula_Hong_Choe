@@ -1,26 +1,29 @@
 import { useEffect } from "react"
 import api from "../services/api"
 
-function SearchBar({ setMovies }) {
-    function handleSubmit(e) {
-        e.preventDefault()
+function SearchBar({ setMovies, setLoading, setError }) {
+  function buscar(){        
+    let texto = document.querySelector('#movie').value;
 
-        useEffect(() => {
-            api.get('&t=${movie}').then((response) => {
-                setMovies(response.data)
-                setLoading(false)
-            }).catch((error) => {
-                console.error('Error fetching movies:', error)
-                setLoading(false)
-            })
-        }, [])
-    }
+    setLoading(true)
+
+    api.get(`?s=${texto}&apikey=e26944ed`)
+        .then((response) => {
+            setMovies(response.data.Search)
+            setLoading(false)
+        })
+        .catch((error) => {
+            console.error('Error al cargar las películas:', error)
+            setError('Error al cargar las películas')
+            setLoading(false)
+        })
+  }  
 
   return (
-    <div onSubmit = {(e) => handleSubmit(e)}>
-        <input type="text" name="movie" placeholder="Search for movies..." />
-        <button type="submit" >Buscar Películas</button>
-    </div>
+    <form>
+        <input type="text" name="movie" id="movie" placeholder="Search for movies..." />
+        <button type="submit" onClick={() => buscar()}>Buscar Películas</button>
+    </form>
   )
 }
 
