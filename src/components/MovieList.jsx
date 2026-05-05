@@ -1,12 +1,24 @@
 import MovieCard from "./MovieCard"
+import MovieDetail from "./MovieDetail"
+import ErrorMessage from "./ErrorMessage"
+import "../styles/MovieList.css";
 
-function MovieList({ movies, setMovies }) {
-  
+function MovieList({ movies, setMovies, movie, setMovie , setError, error}) {
+
   return (
-    <div>
-      {movies.map((movie) => (
-        <MovieCard key={movie.imdbID} movie={movie} setMovie={setMovies}/>
-      ))}
+    <div className="movie-grid">
+      {error != null ? (
+        <ErrorMessage message={error} />
+      ) : (
+        movie == null ? (
+          movies.map((m) => (
+            <MovieCard key={m.imdbID} movie={m} setMovies={setMovies} setMovie={setMovie} />
+          ))
+        ) : (
+          <MovieDetail movie={movie} setMovie={setMovie}/>
+        )
+      )}
+      
     </div>
   )
 }

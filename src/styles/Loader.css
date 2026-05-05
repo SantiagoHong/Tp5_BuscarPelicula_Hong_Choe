@@ -1,0 +1,25 @@
+.loader{
+  display:block;
+  margin:40px auto;
+  max-width:120px;
+  width:96px;
+  height:auto;
+  filter:drop-shadow(0 10px 24px rgba(2,6,23,0.6));
+  animation:loader-bounce 1.2s ease-in-out infinite;
+}
+
+/* optional spinning if image is circular; add class "spin" to rotate */
+.loader.spin{animation:spin 1s linear infinite}
+
+@keyframes loader-bounce{
+  0%,100%{transform:translateY(0);opacity:1}
+  50%{transform:translateY(-8px);opacity:0.95}
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+@media (max-width:480px){
+  .loader{width:64px;margin:28px auto}
+}

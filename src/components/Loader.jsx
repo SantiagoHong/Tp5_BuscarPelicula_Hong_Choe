@@ -1,6 +1,9 @@
+import "../styles/Loader.css";
+import loadingImg from "../images/loading.webp";
+
 function Loader() {
 
-  return <img src="loader.gif" alt="Loading..." />
+  return <img className="loader" src={loadingImg} alt="Loading..." />
 }
 
 export default Loader

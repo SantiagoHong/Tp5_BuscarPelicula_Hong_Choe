@@ -1,18 +1,23 @@
-function MovieDetail({ movie , setMovie}) {
+import "../styles/MovieDetail.css";
 
-  setMovie(movie)
-
+function MovieDetail({ movie, setMovie }) {
 
   return (
-    <div>
-      <h2>{movie.Title}</h2>
-      <img src={movie.Poster} alt={movie.Title} />
-      <p>{movie.Year}</p>
-      <p>{movie.Type}</p>
-      <p>{movie.Director}</p>
-      {movie.Actors.map((actor) => (
-        <p key={actor}>{actor}</p>
-      ))}
+    <div className="movie-detail">
+      <div className="poster">
+        <img src={movie.Poster} alt={movie.Title} />
+      </div>
+      <div className="info">
+        <h2>{movie.Title}</h2>
+        <p className="muted">{movie.Year} • {movie.Runtime} • {movie.Type}</p>
+        <p><strong>Director:</strong> {movie.Director}</p>
+        <p><strong>Actores:</strong> {movie.Actors}</p>
+        <p className="plot">{movie.Plot}</p>
+        <p className="muted">{movie.Language} — {movie.Country}</p>
+        <p className="muted">IMDb: {movie.imdbRating}</p>
+
+        <button className="card-btn" onClick={() => setMovie(null)}>Volver</button>
+      </div>
     </div>
   )
 }
